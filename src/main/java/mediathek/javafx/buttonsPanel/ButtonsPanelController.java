@@ -72,7 +72,9 @@ public class ButtonsPanelController implements Initializable {
             System.out.println("SETON SHOWING");
             final int maxColumns = ApplicationConfiguration.getConfiguration().getInt(ApplicationConfiguration.APPLICATION_BUTTONS_PANEL_MAX_VISIBLE, Konstanten.DEFAULT_BUTTON_PANEL_COLUMNS);
             var strCol = Integer.toString(maxColumns);
-            contextMenu.getItems().stream().filter(mi -> mi.getText().equals(strCol)).findFirst().ifPresent(mi -> {
+            contextMenu.getItems().stream()
+                    .filter(mi -> mi.getText().equalsIgnoreCase(strCol)).findAny()
+                    .ifPresent(mi -> {
                 System.out.println("FOUND MI");
                 final var mri = (RadioMenuItem) mi;
                 mri.setSelected(true);
