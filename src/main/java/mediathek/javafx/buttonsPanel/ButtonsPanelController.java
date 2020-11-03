@@ -8,7 +8,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.GridPane;
 import mediathek.config.Daten;
 import mediathek.config.Konstanten;
@@ -66,20 +69,6 @@ public class ButtonsPanelController implements Initializable {
         logger.trace("initialize");
         Daten.getInstance().getMessageBus().subscribe(this);
         gridPane.setOnContextMenuRequested(e -> contextMenu.show(gridPane, e.getScreenX(), e.getScreenY()));
-
-        //TODO context menu should be check box and setup properly on showing...
-        contextMenu.setOnShowing(e -> {
-            System.out.println("SETON SHOWING");
-            final int maxColumns = ApplicationConfiguration.getConfiguration().getInt(ApplicationConfiguration.APPLICATION_BUTTONS_PANEL_MAX_VISIBLE, Konstanten.DEFAULT_BUTTON_PANEL_COLUMNS);
-            var strCol = Integer.toString(maxColumns);
-            contextMenu.getItems().stream()
-                    .filter(mi -> mi.getText().equalsIgnoreCase(strCol)).findAny()
-                    .ifPresent(mi -> {
-                System.out.println("FOUND MI");
-                final var mri = (RadioMenuItem) mi;
-                mri.setSelected(true);
-            });
-        });
     }
 
     public void onColumnCountChange(Event e) {

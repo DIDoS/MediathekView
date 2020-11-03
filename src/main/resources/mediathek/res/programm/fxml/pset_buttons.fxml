@@ -8,19 +8,18 @@
     <Tab fx:id="buttonsTab" text="Pset Buttons">
         <GridPane fx:id="gridPane">
             <fx:define>
-                <ToggleGroup fx:id="group" />
                 <ContextMenu fx:id="contextMenu">
                     <items>
                         <Menu text="Anzahl der Einträge pro Zeile">
-                            <RadioMenuItem text="2" onAction="#onColumnCountChange" toggleGroup="$group"/>
-                            <RadioMenuItem text="3" onAction="#onColumnCountChange" toggleGroup="$group"/>
-                            <RadioMenuItem text="4" onAction="#onColumnCountChange" toggleGroup="$group"/>
-                            <RadioMenuItem text="5" onAction="#onColumnCountChange" toggleGroup="$group"/>
-                            <RadioMenuItem text="6" onAction="#onColumnCountChange" toggleGroup="$group"/>
-                            <RadioMenuItem text="7" onAction="#onColumnCountChange" toggleGroup="$group"/>
-                            <RadioMenuItem text="8" onAction="#onColumnCountChange" toggleGroup="$group"/>
-                            <RadioMenuItem text="9" onAction="#onColumnCountChange" toggleGroup="$group"/>
-                            <RadioMenuItem text="10" onAction="#onColumnCountChange" toggleGroup="$group"/>
+                            <MenuItem text="2" onAction="#onColumnCountChange"/>
+                            <MenuItem text="3" onAction="#onColumnCountChange"/>
+                            <MenuItem text="4" onAction="#onColumnCountChange"/>
+                            <MenuItem text="5" onAction="#onColumnCountChange"/>
+                            <MenuItem text="6" onAction="#onColumnCountChange"/>
+                            <MenuItem text="7" onAction="#onColumnCountChange"/>
+                            <MenuItem text="8" onAction="#onColumnCountChange"/>
+                            <MenuItem text="9" onAction="#onColumnCountChange"/>
+                            <MenuItem text="10" onAction="#onColumnCountChange"/>
                         </Menu>
                     </items>
                 </ContextMenu>
