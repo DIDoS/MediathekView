@@ -2,11 +2,10 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.GridPane?>
-<TabPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="600.0"
+<TabPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0"
          xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
          fx:controller="mediathek.javafx.buttonsPanel.ButtonsPanelController">
     <Tab fx:id="buttonsTab" text="Pset Buttons">
-        <ScrollPane fx:id="scrollPane">
             <GridPane fx:id="gridPane" hgap="5" vgap="5">
                 <fx:define>
                     <ContextMenu fx:id="contextMenu">
@@ -26,6 +25,5 @@
                     </ContextMenu>
                 </fx:define>
             </GridPane>
-        </ScrollPane>
     </Tab>
 </TabPane>

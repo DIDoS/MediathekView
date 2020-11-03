@@ -33,17 +33,31 @@ public class ButtonsPanelController implements Initializable {
     private GridPane gridPane;
     @FXML
     private ContextMenu contextMenu;
-    @FXML
-    private ScrollPane scrollPane;
+
+    private JFXPanel parent = null;
+
+    private Scene scene = null;
+
+    public void setParent(JFXPanel parent) {
+        this.parent = parent;
+    }
+
+    public void setScene(Scene scene) {
+        this.scene = scene;
+    }
 
     public static ButtonsPanelController install(JFXPanel parent) throws IOException {
         logger.trace("install");
+
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(ButtonsPanelController.class.getResource("/mediathek/res/programm/fxml/pset_buttons.fxml"));
 
         TabPane buttonsPane = loader.load();
         final ButtonsPanelController buttonsController = loader.getController();
-        parent.setScene(new Scene(buttonsPane));
+        buttonsController.setParent(parent);
+        var scene = new Scene(buttonsPane);
+        buttonsController.setScene(scene);
+        parent.setScene(scene);
 
         return buttonsController;
     }
@@ -61,14 +75,25 @@ public class ButtonsPanelController implements Initializable {
         gridPane.getChildren().clear();
         gridPane.setPadding(new Insets(5));
         //var listeButton = Daten.listePset.getListeButton();
-        final var rows = (int) Math.ceil((double) 20 / maxColumns);
+        final var numItems = 20;
+        final var rows = (int) Math.ceil((double) numItems / maxColumns);
+        var count = 0;
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < maxColumns; col++) {
-                var l = new Button("col " + col + " row " + row);
+                count++;
+                var l = new Button("Num " + count);
                 GridPane.setConstraints(l, col, row);
                 gridPane.getChildren().add(l);
             }
         }
+
+        gridPane.requestFocus();
+        gridPane.requestLayout();
+        gridPane.layout();
+        parent.setScene(null);
+        parent.invalidate();
+        parent.repaint();
+        parent.setScene(scene);
     }
 
     @Handler
@@ -80,7 +105,7 @@ public class ButtonsPanelController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         logger.trace("initialize");
         Daten.getInstance().getMessageBus().subscribe(this);
-        scrollPane.setOnContextMenuRequested(e -> contextMenu.show(gridPane, e.getScreenX(), e.getScreenY()));
+        gridPane.setOnContextMenuRequested(e -> contextMenu.show(gridPane, e.getScreenX(), e.getScreenY()));
     }
 
     public void onColumnCountChange(Event e) {
