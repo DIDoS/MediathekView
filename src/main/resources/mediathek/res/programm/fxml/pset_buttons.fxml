@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.layout.VBox?>
-<TabPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mediathek.javafx.buttonsPanel.ButtonsPanelController">
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.GridPane?>
+<TabPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="600.0"
+         xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+         fx:controller="mediathek.javafx.buttonsPanel.ButtonsPanelController">
     <Tab fx:id="buttonsTab" text="Pset Buttons">
-        <VBox prefHeight="200.0" prefWidth="100.0">
-            <Label fx:id="testlabel" text="Hello World"/>
-        </VBox>
+        <GridPane fx:id="gridPane">
+            <fx:define>
+                <ToggleGroup fx:id="group" />
+                <ContextMenu fx:id="contextMenu">
+                    <items>
+                        <Menu text="Anzahl der Einträge pro Zeile">
+                            <RadioMenuItem text="2" onAction="#onColumnCountChange" toggleGroup="$group"/>
+                            <RadioMenuItem text="3" onAction="#onColumnCountChange" toggleGroup="$group"/>
+                            <RadioMenuItem text="4" onAction="#onColumnCountChange" toggleGroup="$group"/>
+                            <RadioMenuItem text="5" onAction="#onColumnCountChange" toggleGroup="$group"/>
+                            <RadioMenuItem text="6" onAction="#onColumnCountChange" toggleGroup="$group"/>
+                            <RadioMenuItem text="7" onAction="#onColumnCountChange" toggleGroup="$group"/>
+                            <RadioMenuItem text="8" onAction="#onColumnCountChange" toggleGroup="$group"/>
+                            <RadioMenuItem text="9" onAction="#onColumnCountChange" toggleGroup="$group"/>
+                            <RadioMenuItem text="10" onAction="#onColumnCountChange" toggleGroup="$group"/>
+                        </Menu>
+                    </items>
+                </ContextMenu>
+            </fx:define>
+        </GridPane>
     </Tab>
 </TabPane>

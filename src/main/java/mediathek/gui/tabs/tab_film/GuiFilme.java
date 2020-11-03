@@ -144,6 +144,18 @@ public class GuiFilme extends AGuiTabPanel {
     }
 
     private void setupButtonPanel() {
+        var config = ApplicationConfiguration.getConfiguration();
+        SwingUtilities.invokeLater(() -> fxPsetButtonsPanel.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentShown(ComponentEvent e) {
+                config.setProperty(ApplicationConfiguration.APPLICATION_BUTTONS_PANEL_VISIBLE, true);
+            }
+
+            @Override
+            public void componentHidden(ComponentEvent e) {
+                config.setProperty(ApplicationConfiguration.APPLICATION_BUTTONS_PANEL_VISIBLE, false);
+            }
+        }));
         buttonPanelController = new SwingButtonPanelController(this, extensionArea);
     }
 
