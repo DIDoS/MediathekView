@@ -6,24 +6,26 @@
          xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
          fx:controller="mediathek.javafx.buttonsPanel.ButtonsPanelController">
     <Tab fx:id="buttonsTab" text="Pset Buttons">
-        <GridPane fx:id="gridPane">
-            <fx:define>
-                <ContextMenu fx:id="contextMenu">
-                    <items>
-                        <Menu text="Anzahl der Einträge pro Zeile">
-                            <MenuItem text="2" onAction="#onColumnCountChange"/>
-                            <MenuItem text="3" onAction="#onColumnCountChange"/>
-                            <MenuItem text="4" onAction="#onColumnCountChange"/>
-                            <MenuItem text="5" onAction="#onColumnCountChange"/>
-                            <MenuItem text="6" onAction="#onColumnCountChange"/>
-                            <MenuItem text="7" onAction="#onColumnCountChange"/>
-                            <MenuItem text="8" onAction="#onColumnCountChange"/>
-                            <MenuItem text="9" onAction="#onColumnCountChange"/>
-                            <MenuItem text="10" onAction="#onColumnCountChange"/>
-                        </Menu>
-                    </items>
-                </ContextMenu>
-            </fx:define>
-        </GridPane>
+        <ScrollPane>
+            <GridPane fx:id="gridPane" hgap="5" vgap="5">
+                <fx:define>
+                    <ContextMenu fx:id="contextMenu">
+                        <items>
+                            <Menu text="Anzahl der Einträge pro Zeile">
+                                <MenuItem text="2" onAction="#onColumnCountChange"/>
+                                <MenuItem text="3" onAction="#onColumnCountChange"/>
+                                <MenuItem text="4" onAction="#onColumnCountChange"/>
+                                <MenuItem text="5" onAction="#onColumnCountChange"/>
+                                <MenuItem text="6" onAction="#onColumnCountChange"/>
+                                <MenuItem text="7" onAction="#onColumnCountChange"/>
+                                <MenuItem text="8" onAction="#onColumnCountChange"/>
+                                <MenuItem text="9" onAction="#onColumnCountChange"/>
+                                <MenuItem text="10" onAction="#onColumnCountChange"/>
+                            </Menu>
+                        </items>
+                    </ContextMenu>
+                </fx:define>
+            </GridPane>
+        </ScrollPane>
     </Tab>
 </TabPane>

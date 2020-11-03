@@ -7,11 +7,9 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import mediathek.config.Daten;
 import mediathek.config.Konstanten;
@@ -57,6 +55,17 @@ public class ButtonsPanelController implements Initializable {
 
         final int maxColumns = ApplicationConfiguration.getConfiguration()
                 .getInt(ApplicationConfiguration.APPLICATION_BUTTONS_PANEL_MAX_VISIBLE, Konstanten.DEFAULT_BUTTON_PANEL_COLUMNS);
+
+        gridPane.getChildren().clear();
+        gridPane.setPadding(new Insets(5));
+        //var listeButton = Daten.listePset.getListeButton();
+        final var rows = (int)Math.ceil((double)20 / maxColumns);
+        for (int row = 0; row < rows; row++)
+            for (int col = 0; col < maxColumns;col++) {
+                var l = new Button("col " + col + " row " + row);
+                GridPane.setConstraints(l,col,row);
+                gridPane.getChildren().add(l);
+            }
     }
 
     @Handler
