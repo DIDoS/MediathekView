@@ -6,7 +6,7 @@
          xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
          fx:controller="mediathek.javafx.buttonsPanel.ButtonsPanelController">
     <Tab fx:id="buttonsTab" text="Pset Buttons">
-        <ScrollPane>
+        <ScrollPane fx:id="scrollPane">
             <GridPane fx:id="gridPane" hgap="5" vgap="5">
                 <fx:define>
                     <ContextMenu fx:id="contextMenu">

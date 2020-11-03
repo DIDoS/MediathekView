@@ -33,6 +33,8 @@ public class ButtonsPanelController implements Initializable {
     private GridPane gridPane;
     @FXML
     private ContextMenu contextMenu;
+    @FXML
+    private ScrollPane scrollPane;
 
     public static ButtonsPanelController install(JFXPanel parent) throws IOException {
         logger.trace("install");
@@ -59,13 +61,14 @@ public class ButtonsPanelController implements Initializable {
         gridPane.getChildren().clear();
         gridPane.setPadding(new Insets(5));
         //var listeButton = Daten.listePset.getListeButton();
-        final var rows = (int)Math.ceil((double)20 / maxColumns);
-        for (int row = 0; row < rows; row++)
-            for (int col = 0; col < maxColumns;col++) {
+        final var rows = (int) Math.ceil((double) 20 / maxColumns);
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < maxColumns; col++) {
                 var l = new Button("col " + col + " row " + row);
-                GridPane.setConstraints(l,col,row);
+                GridPane.setConstraints(l, col, row);
                 gridPane.getChildren().add(l);
             }
+        }
     }
 
     @Handler
@@ -77,7 +80,7 @@ public class ButtonsPanelController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         logger.trace("initialize");
         Daten.getInstance().getMessageBus().subscribe(this);
-        gridPane.setOnContextMenuRequested(e -> contextMenu.show(gridPane, e.getScreenX(), e.getScreenY()));
+        scrollPane.setOnContextMenuRequested(e -> contextMenu.show(gridPane, e.getScreenX(), e.getScreenY()));
     }
 
     public void onColumnCountChange(Event e) {

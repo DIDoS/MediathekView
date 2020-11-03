@@ -98,7 +98,6 @@ public class GuiFilme extends AGuiTabPanel {
      * macOS touch bar support
      */
     public JTouchBar touchBar;
-    private SwingButtonPanelController buttonPanelController;
     private Optional<BookmarkWindowController> bookmarkWindowController = Optional.empty();
     /**
      * The swing helper panel FilmAction bar.
@@ -156,7 +155,6 @@ public class GuiFilme extends AGuiTabPanel {
                 config.setProperty(ApplicationConfiguration.APPLICATION_BUTTONS_PANEL_VISIBLE, false);
             }
         }));
-        buttonPanelController = new SwingButtonPanelController(this, extensionArea);
     }
 
     private void setupFilmListTable() {
