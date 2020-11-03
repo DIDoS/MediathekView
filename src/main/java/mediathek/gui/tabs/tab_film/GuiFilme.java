@@ -31,6 +31,7 @@ import mediathek.gui.messages.*;
 import mediathek.gui.messages.history.DownloadHistoryChangedEvent;
 import mediathek.gui.tabs.AGuiTabPanel;
 import mediathek.javafx.bookmark.BookmarkWindowController;
+import mediathek.javafx.buttonsPanel.ButtonsPanelController;
 import mediathek.javafx.descriptionPanel.DescriptionPanelController;
 import mediathek.javafx.filmtab.FilmTabInfoPane;
 import mediathek.javafx.filterpanel.FilmActionPanel;
@@ -87,6 +88,7 @@ public class GuiFilme extends AGuiTabPanel {
             new JCheckBoxMenuItem("Beschreibung anzeigen");
     private final MediensammlungAction mediensammlungAction = new MediensammlungAction();
     private final JFXPanel fxDescriptionPanel = new JFXPanel();
+    private final JFXPanel fxPsetButtonsPanel = new JFXPanel();
     private final SeenHistoryController historyController = new SeenHistoryController();
     /**
      * The JavaFx Film action popup panel.
@@ -119,6 +121,7 @@ public class GuiFilme extends AGuiTabPanel {
 
         // add film description panel
         extensionArea.add(fxDescriptionPanel);
+        extensionArea.add(fxPsetButtonsPanel);
 
         setupFilmListTable();
 
@@ -128,6 +131,7 @@ public class GuiFilme extends AGuiTabPanel {
 
         setupButtonPanel();
         setupDescriptionPanel();
+        setupPsetButtonsPanel();
         setupFilmActionPanel();
 
         start_init();
@@ -225,7 +229,7 @@ public class GuiFilme extends AGuiTabPanel {
         cbShowButtons.setSelected(ApplicationConfiguration.getConfiguration().getBoolean(ApplicationConfiguration.APPLICATION_BUTTONS_PANEL_VISIBLE, false));
         cbShowButtons.addActionListener(e -> daten.getMessageBus().publishAsync(new ButtonsPanelVisibilityChangedEvent(cbShowButtons.isSelected())));
 
-        jMenuAnsicht.add(cbShowButtons,0);
+        jMenuAnsicht.add(cbShowButtons, 0);
     }
 
     @Override
@@ -302,6 +306,16 @@ public class GuiFilme extends AGuiTabPanel {
                 () -> fxFilmActionPanel.setScene(fap.getFilmActionPanelScene()));
     }
 
+    private void setupPsetButtonsPanel() {
+        JavaFxUtils.invokeInFxThreadAndWait(() -> {
+            try {
+                var psetController = ButtonsPanelController.install(fxPsetButtonsPanel);
+            } catch (Exception ex) {
+                logger.error("setupPsetButtonsPanel", ex);
+            }
+        });
+    }
+
     private void setupDescriptionPanel() {
         JavaFxUtils.invokeInFxThreadAndWait(() -> {
             try {
@@ -311,7 +325,7 @@ public class GuiFilme extends AGuiTabPanel {
                     Platform.runLater(() -> descriptionPanelController.showFilmDescription(optFilm));
                 }));
             } catch (Exception ex) {
-                ex.printStackTrace();
+                logger.error("setupDescriptionPanel", ex);
             }
         });
     }
