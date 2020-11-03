@@ -5,9 +5,9 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.VBox?>
 <TabPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mediathek.javafx.buttonsPanel.ButtonsPanelController">
-    <Tab fx:id="buttonsTab" text="Buttons">
+    <Tab fx:id="buttonsTab" text="Pset Buttons">
         <VBox prefHeight="200.0" prefWidth="100.0">
-            <Label text="Hello World"/>
+            <Label fx:id="testlabel" text="Hello World"/>
         </VBox>
     </Tab>
 </TabPane>

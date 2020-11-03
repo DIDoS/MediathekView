@@ -220,6 +220,7 @@ public class GuiFilme extends AGuiTabPanel {
     @Handler
     private void handleButtonsPanelVisibilityChanged(ButtonsPanelVisibilityChangedEvent evt) {
         SwingUtilities.invokeLater(() -> cbShowButtons.setSelected(evt.visible));
+        SwingUtilities.invokeLater(() -> fxPsetButtonsPanel.setVisible(evt.visible));
     }
 
     public void installViewMenuEntry(JMenu jMenuAnsicht) {
@@ -310,6 +311,11 @@ public class GuiFilme extends AGuiTabPanel {
         JavaFxUtils.invokeInFxThreadAndWait(() -> {
             try {
                 var psetController = ButtonsPanelController.install(fxPsetButtonsPanel);
+                psetController.setOnCloseRequest(e -> {
+                    daten.getMessageBus().publishAsync(new ButtonsPanelVisibilityChangedEvent(false));
+                    e.consume();
+                });
+                psetController.setupButtonLayout();
             } catch (Exception ex) {
                 logger.error("setupPsetButtonsPanel", ex);
             }
